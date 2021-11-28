@@ -16,7 +16,6 @@ public class Equipment implements EquipInterface {
         this.agi = agi;
         this.intel = intel;
     }
-
     @Override
     public boolean equip() {
         this.equip = true;

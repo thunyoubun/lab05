@@ -16,8 +16,10 @@ public class Lab05 {
         //Player
         Player player = new Player("Switch",10,10,10,10,10,10);
         Player enemy = new Player("Zombie",300,10,10,10,10,10);
+
         //Class
         Job knight = new Job(JobType.Knight,50,30,40,35,15,10);
+        Job mage = new Job(JobType.Mage,40,70,30,25,20,40);
 
         //Equipment
         Equipment sword = new Equipment(EquipType.WEAPON,"Sword",25,12,10,5);

@@ -12,6 +12,7 @@ public class Character implements CharacterInterface {
     protected Equipment[] equipment = new Equipment[5];
     protected Job job;
 
+    /*build Character*/
     public Character(String name,double hp,double mp,double atk,double def,double agi,double intel){
         this.name = name;
         this.hp = hp;
@@ -22,7 +23,7 @@ public class Character implements CharacterInterface {
         this.intel = intel;
         update();
     }
-
+    /*รับอาชีพเข้ามา แล้ว เพิ่ม stats ของตัวละคร*/
     @Override
     public void getJob(Job job) {
         this.job = job;
@@ -33,6 +34,12 @@ public class Character implements CharacterInterface {
         this.agi += this.job.getJobAgi();
         this.intel += this.job.getJobIntel();
     }
+
+    /** Attack to Enemy
+     * @param character is enemy
+     * effects : ลด hp ตามพลังโจมตีของผู้เล่น - พลังป้องกันของ character
+     * @returns character.hp
+     */
 
     @Override
     public void attack( Character character) {
@@ -67,7 +74,11 @@ public class Character implements CharacterInterface {
         increaseEquip();
     }
 
-
+    /** UnEquip equipment Player
+     * @param equipment อุปกรณ์ที่ต้องการถอด
+     * Check conditions. Which type of Equipment want to unmount
+     * then Set this.equipment[type] == null
+     * */
     @Override
     public void unEquip(Equipment equipment) {
         if(equipment.getType() == EquipType.WEAPON){
@@ -93,6 +104,12 @@ public class Character implements CharacterInterface {
         decreaseEquip();
     }
 
+    /** Equip equipment
+     * @param equipment อุปกรณ์ที่ต้องการใส่
+     * Check condition. Which type of Equipment want to equip
+     * ,then if that equipment had no equip
+     * set this.equipment[type] = equipment
+     * else returns : print("current slot is full")*/
     @Override
     public void equip(Equipment equipment) {
         if(equipment.getType() == EquipType.WEAPON  ){
@@ -148,6 +165,10 @@ public class Character implements CharacterInterface {
 
     }
 
+    /*if this.equipment != null
+    * Loop variable i between 0 and equipment.length
+    * and check if equipment[i]!=null increase player stats by equipment*/
+
     @Override
     public void increaseEquip() {
         if(this.equipment != null){
@@ -161,6 +182,9 @@ public class Character implements CharacterInterface {
             }
         }
     }
+    /*if this.equipment != null
+     * Loop variable i between 0 and equipment.length
+     * and check if equipment[i]!=null decrease player stats by equipment*/
 
     @Override
     public void decreaseEquip(){
@@ -279,7 +303,7 @@ public class Character implements CharacterInterface {
         if(equipment[4] != null){
             System.out.print( equipment[4].nameEquip());
         }
-        else if (equipment[4] == null){
+        else {
             System.out.print(" None");
         }
         System.out.print(" ]\n");
